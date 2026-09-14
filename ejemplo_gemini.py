@@ -1,7 +1,6 @@
 """
 Ejemplo vanilla: Gemini API con requests
 Para probar la capa gratuita antes de decidir si se usa en clase.
-
 A diferencia de PokeAPI, esta API si pide autenticacion. Para conseguir
 una API key gratuita (sin tarjeta):
 
