@@ -1,21 +1,23 @@
 import requests
 
-nombre = input("Escribe un nombre: ")
+nombre = input("Escribe un nombre: ").strip().lower()
 
-url = f"https://api.agify.io?name={nombre}"
-respuesta = requests.get(url)
+if nombre:
+    url = f"https://api.agify.io?name={nombre}"
+    respuesta = requests.get(url)
 
-if respuesta.status_code == 200:
-    datos = respuesta.json()
+    if respuesta.status_code == 200:
+        datos = respuesta.json()
 
-    nombre_consultado = datos["name"]
-    edad = datos["age"]
-    cantidad = datos["count"]
+        nombre_consultado = datos.get("name", "No disponible")
+        edad = datos.get("age", "No disponible")
+        cantidad = datos.get("count", "No disponible")
 
-    print("\nResultado de la API")
-    print(f"Nombre consultado: {nombre_consultado}")
-    print(f"Edad estimada: {edad}")
-    print(f"Cantidad de registros analizados: {cantidad}")
+        print("\nResultado de la API")
+        print(f"Nombre consultado: {nombre_consultado}")
+        print(f"Edad estimada: {edad}")
+        print(f"Cantidad de registros analizados: {cantidad}")
+    else:
+        print("No se pudo consultar la API.")
 else:
-    print("No se pudo consultar la API.")
-    
+    print("Debes escribir un nombre para consultar la API.")
